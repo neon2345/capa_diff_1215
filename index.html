@@ -245,7 +245,7 @@
         let map;
         let h3Data = [];
         let allPolygons = [];
-        let filteredData = [];
+        let filteredData = null; // null 表示未筛选；[] 表示筛选结果为空
         const tagFilters = {
             change: true,
             town: true,
@@ -407,7 +407,7 @@
             });
             allPolygons = [];
             
-            const dataToDraw = filteredData.length > 0 ? filteredData : h3Data;
+            const dataToDraw = filteredData === null ? h3Data : filteredData;
             
             dataToDraw.forEach((item, index) => {
                 if (!item.boundary || item.boundary.length === 0) {
@@ -570,7 +570,7 @@
             tagFilters.change = true;
             tagFilters.town = true;
             tagFilters.low = true;
-            filteredData = [];
+            filteredData = null;
             drawH3Boundaries();
         }
         
